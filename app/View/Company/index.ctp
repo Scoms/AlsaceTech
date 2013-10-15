@@ -1,6 +1,5 @@
 <h2>Entreprises présentes sur le forum</h2>
 
-<?php echo var_dump($selected)?>
 <?php echo $this->Form->create('User') ?>
   <fieldset>
     <legend>Choisir</legend>
