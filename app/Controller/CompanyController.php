@@ -38,6 +38,15 @@ class CompanyController extends AppController{
 
 		$this->User->save($this->data);
 	    $this->set('companies',$companies);
+
+	    $user = $this->User->findById(AuthComponent::user('id'));
+	    $arraytest = array();
+
+	    foreach ($user['Company'] as $el) 
+	    {
+	    	array_push($arraytest, $el['UsersCompany']['company_id']);
+	    }
+	    $this->set('selected',$arraytest);
 	}
 }
 
