@@ -8,6 +8,7 @@ class User extends AppModel{
 	public $school;
 	public $username;
 	public $password;
+
     public $hasAndBelongsToMany = array(
       'Company' => array(
           'className' => 'Company',
@@ -31,14 +32,7 @@ class User extends AppModel{
                 'rule' => array('notEmpty'),
                 'message' => 'Mot de passe nécessaire.'
             )
-        ),
-        'Company' => array(
-          'multiple' => array(
-            'rule' => array('multiple', array('min' => 0)),
-            'message' => 'Merci de sélectionner des entreprises',
-            'required' => true,
-          ),
-        ),
+        )
 
     );
 

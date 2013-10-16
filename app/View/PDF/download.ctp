@@ -18,12 +18,20 @@
 	$tcpdf->SetFont($textfont,'B',20); 
 	$tcpdf->addPage();
 	//$tcpdf->Cell(0,14, "Hello World", 0,1,'L'); 
-	$txt = "";
+	$i=1;
 	foreach ($confs as $conf) 
 	{
-		$txt .= $conf['Conf']['label'];
-	} 
- 	$tcpdf->Cell(0,14, $txt, 0,1,'L');
-
+		$txt1 = ($conf['Conf']['label'])." :";
+		$txt2 = $conf['Conf']['start']."-".$conf['Conf']['end'];
+		//$tcpdf->write(100,utf8_encode($txt));
+		if($i==1)
+		{
+			$tcpdf->Cell(50,50,"", 0,1,'L'); 
+		}
+		$tcpdf->Cell(0,0, utf8_encode($txt1), 0,1,'L'); 
+		$tcpdf->Cell(0,0, utf8_encode($txt2), 0,1,'L'); 
+		$i++;
+	}
+	//var_dump($txt);
 	echo $tcpdf->Output('planning.pdf', 'D'); 
 ?>

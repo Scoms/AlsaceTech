@@ -35,29 +35,25 @@ class UsersController extends AppController{
     }
 
     public function add() 
-    {
+    { 
         if($this->request->is('post'))
         {
             $this->User->create();
 			$username = $this->request->data['User']['username'];
             $userInBase = $this->User->find('first',array('conditions'=>array('username'=> $username)));
+            
             if($userInBase)
             {           
                 $this->Session->setFlash(__("L'adresse email est déjà utilisée pour un autre compte.")); 
             }
             else
             {
+                $this->Session->setFlash(__(var_dump($this->request->data)));
                 if($this->User->save($this->request->data))
-                {
-                    return $this->redirect(array('controller'=> 'Home'));       
+                {   
+
+                    return $this->redirect(array('controller'=> 'Users','action'=>'login'));       
                 }
-                /*if ($this->User->validates()) {
-                    $this->Session->setFlash(__('Votre compte à bien été crée !')); 
-                    return $this->redirect(array('controller'=> 'Home'));
-                } 
-                else
-                {
-                } */ 
             }    
        }
     }
