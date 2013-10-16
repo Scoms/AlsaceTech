@@ -15,12 +15,8 @@
 				<?php if(AuthComponent::user('username')): ?>
 					<li><?php echo $this->Html->link("Village des entreprises",array('controller'=>'Company','action'=>'index'))?></li>
 					<li><?php echo $this->Html->link("S'inscrire à une conférence",array('controller'=>'Conf','action'=>'index'))?></li>
+					<li><?php echo $this->Html->link("Activités",array('controller'=>'Activities','action'=>'inscription'))?></li>
 					<li><?php echo $this->Html->link("Exporter en PDF",array('controller'=>'PDF','action'=>'download'))?></li>
-					<!--
-					<li>Village de l'emploie</li>
-					<li>Parcours de l'innovation</li>
-					<li><?php echo AuthComponent::user('username') ?></li>
-					-->
 				<?php endif ?>
 			</ul>
 		</div>

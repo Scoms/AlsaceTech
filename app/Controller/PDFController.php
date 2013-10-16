@@ -28,6 +28,9 @@ class PDFController extends AppController{
 				'conditions' => array('user_id' => AuthComponent::user('id')
 				)));
 			$this->set('confs',$confs);
+
+			$user = $this->User->findById(AuthComponent::user('id'));
+			$this->set('activities',$user['Activity']);
 	        $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 	        $this->render(); 
 	}

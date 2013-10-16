@@ -16,8 +16,14 @@ class User extends AppModel{
           'foreignKey' => 'user_id',
           'associationForeignKey' => 'company_id',
           'unique' => 'keepExisting',
-    )
-
+    ),
+      'Activity' => array(
+          'className' => 'Activity',
+          'joinTable' => 'users_activities',
+          'foreignKey' => 'user_id',
+          'associationForeignKey' => 'activity_id',
+          'unique' => 'keepExisting',
+        )
     );
 
 	public $name = 'User';

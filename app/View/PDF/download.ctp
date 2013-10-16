@@ -15,7 +15,7 @@
 	// Now you position and print your page content 
 	// example:  
 	$tcpdf->SetTextColor(0, 0, 0); 
-	$tcpdf->SetFont($textfont,'B',20); 
+	$tcpdf->SetFont($textfont,'',14); 
 	$tcpdf->addPage();
 	//$tcpdf->Cell(0,14, "Hello World", 0,1,'L'); 
 	$i=1;
@@ -26,12 +26,36 @@
 		//$tcpdf->write(100,utf8_encode($txt));
 		if($i==1)
 		{
-			$tcpdf->Cell(50,50,"", 0,1,'L'); 
+			$tcpdf->Cell(50,70,"", 0,1,'L'); 
+			$tcpdf->SetFont($textfont,'',28); 
+			$tcpdf->Cell(0,0,"Conférences et présentations", 0,1,'L'); 
+			$tcpdf->Cell(50,10,"", 0,1,'L'); 
+
 		}
+		$tcpdf->SetFont($textfont,'',14); 
 		$tcpdf->Cell(0,0, utf8_encode($txt1), 0,1,'L'); 
 		$tcpdf->Cell(0,0, utf8_encode($txt2), 0,1,'L'); 
 		$i++;
 	}
+
+	$i=1;
+	foreach ($activities as $activity) 
+	{
+		$txt1 = ($activity['label']);
+		//$tcpdf->write(100,utf8_encode($txt));
+		
+		if($i==1)
+		{
+			$tcpdf->SetFont($textfont,'',28); 
+			$tcpdf->Cell(50,20,"Activités", 0,1,'L'); 
+			$tcpdf->Cell(50,10,"", 0,1,'L'); 
+		}
+		$tcpdf->SetFont($textfont,'',14); 
+		$tcpdf->Cell(0,0, utf8_encode($txt1), 0,1,'L'); 
+		$i++;
+	}
+
+	
 	//var_dump($txt);
 	echo $tcpdf->Output('planning.pdf', 'D'); 
 ?>
