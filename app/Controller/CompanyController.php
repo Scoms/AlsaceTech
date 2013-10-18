@@ -31,8 +31,18 @@ class CompanyController extends AppController{
 			'conditions' => array('category' => $category)
 			));
 
+	    $user = $this->User->findById(AuthComponent::user('id'));
+
 		if ($this->request->is('post')) 
 		{
+			foreach ($user['Company'] as $oldCompany) 
+			{
+				if($oldCompany['category'] != $category)
+				{
+					array_push($this->request->data['User']['Company'], $oldCompany['id']);
+				}
+			}
+
 	    	$this->User->create();
 	    	$this->User->set('id',AuthComponent::user('id'));
 	    	if ($this->User->save($this->request->data)) 
@@ -43,19 +53,28 @@ class CompanyController extends AppController{
 	    	{	
 	        	$this->Session->setFlash(__('Oups'));
 	        }
+	        		$this->User->save($this->data);
 	    }
-
-		$this->User->save($this->data);
 	    $this->set('companies',$companies);
 
-	    $user = $this->User->findById(AuthComponent::user('id'));
-	    $arraytest = array();
+	    $selected = array();
 
-	    foreach ($user['Company'] as $el) 
-	    {
-	    	array_push($arraytest, $el['UsersCompany']['company_id']);
-	    }
-	    $this->set('selected',$arraytest);
+		if ($this->request->is('post')) 
+		{
+		    foreach ($this->request->data['User']['Company'] as $el) 
+		    {
+		    		array_push($selected, $el);    		
+		    }
+		}
+		else
+		{
+		    foreach ($user['Company'] as $el) 
+		    {
+	    		array_push($selected, $el['id']);    		 	
+		    }
+		}
+		
+	    $this->set('selected',$selected);
 	}
 }
 

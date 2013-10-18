@@ -25,12 +25,16 @@ class PDFController extends AppController{
 	{
 	        //Configure::write('debug',0); // Otherwise we cannot use this method while developing 
 			$confs = $this->Booking->find('all',array(
-				'conditions' => array('user_id' => AuthComponent::user('id')
-				)));
+				'conditions' => array('user_id' => AuthComponent::user('id')),
+				'order' => 'start'
+				));
 			$this->set('confs',$confs);
 
 			$user = $this->User->findById(AuthComponent::user('id'));
+
+			$companies = $user['Company'];
 			$this->set('activities',$user['Activity']);
+			$this->set('companies',$companies);
 	        $this->layout = 'pdf'; //this will use the pdf.ctp layout 
 	        $this->render(); 
 	}
