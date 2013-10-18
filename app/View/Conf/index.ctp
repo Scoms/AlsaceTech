@@ -1,19 +1,21 @@
-<table>
-	<caption>Conférences et présentations</caption>
-	<tr>
-		<th>Début</th>
-		<th>Fin</th>
-		<th>Nom</th>
-		<th>Description</th>
+<?php if(AuthComponent::user('username')): ?>
+<h2>Conférences et présentations</h2>
+<table style="width:750px;">
+	<caption></caption>
+	<tr style="height:20px;">
+		<th style="width:50px; padding-right:20px;">Début</th>
+		<th style="width:50px; padding-right:20px;">Fin</th>
+		<th style="width:300px; padding-right:20px;">Nom</th>
+		<th style="width:100px; padding-right:20px; padding-left:20px;">Description</th>
 		<th>Places</th>
 		<th><th>
 	</tr>
 <?php foreach ($confs as $conf):?>
-	<tr>
-		<td><?php echo $conf[0]['Conf']['start'] ?></td>
-		<td><?php echo $conf[0]['Conf']['end'] ?></td>
+	<tr style="height:20px">
+		<td><?php echo substr($conf[0]['Conf']['start'], 0, -3) ?></td>
+		<td><?php echo substr($conf[0]['Conf']['end'], 0, -3) ?></td>
 		<td><?php echo utf8_encode($conf[0]['Conf']['label']) ?></td>
-		<td><?php echo utf8_encode($conf[0]['Conf']['description']) ?></td>
+		<td><?php if( $conf[0]['Conf']['description'] != "" ) { ?><acronym style=" margin-left:20px; border-bottom:1px dotted; padding-bottom:2px; cursor:pointer;" title="<?php echo utf8_encode($conf[0]['Conf']['description']) ?>">Plus d'info</acronym><?php } ?></td>
 		<td>
 			<?php 
 				echo $conf[1];
@@ -36,3 +38,4 @@
 	</tr>
 <?php endforeach ?>
 </table>
+<?php endif ?>

@@ -1,11 +1,15 @@
-<h2>Inscription</h2>
+<?php if(AuthComponent::user('username')): ?>
+	<h2>Inscription</h2>
 
 <?php echo $this->Form->create('User') ?>
-  <fieldset>
+  <fieldset id="fieldactivite">
     <legend>Choisir</legend>
   <?php
 	echo $this->Form->input('User.Activity',array('label'=>false, 'multiple'=>'checkbox','selected'=>$selected));
   ?>
-  <p>Un choix possible entre les deux derniers</p>
+  <p><strong>Un choix possible entre les deux derniers</strong></p>
+ 
+ <?php echo $this->Form->end(__('Sauvegarder')); ?>
   </fieldset>
-<?php echo $this->Form->end(__('Sauvegarder')); ?>
+
+<?php endif ?>
