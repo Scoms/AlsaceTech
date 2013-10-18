@@ -20,7 +20,16 @@ class CompanyController extends AppController{
 
 	public function index()
 	{
-		$companies = $this->User->Company->find('list',array('fields' => array('id', 'label')));
+
+	}
+
+	public function category($category=null)
+	{
+		$category = $category == null ? '' : $category;
+		$companies = $this->User->Company->find('list',array(
+			'fields' => array('id', 'label'),
+			'conditions' => array('category' => $category)
+			));
 
 		if ($this->request->is('post')) 
 		{
