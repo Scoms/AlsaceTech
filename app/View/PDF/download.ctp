@@ -9,11 +9,10 @@
 	$tcpdf->SetAutoPageBreak( false ); 
 	$tcpdf->setHeaderFont(array($textfont,'',40)); 
 	$tcpdf->xheadercolor = array(255,255,255); 
-	$tcpdf->xheadertext = 'Alsace Tech - Programme'; 
-	$tcpdf->xfootertext = 'Programme forum AlsaceTech.'; 
+	$tcpdf->setPrintFooter(false);
 
-	// Now you position and print your page content 
-	// example:  
+	$tcpdf->xheadertext = 'Forum Alsace Tech 2013';
+	
 	$tcpdf->SetTextColor(0, 0, 0); 
 	$tcpdf->SetFont($textfont,'',14); 
 	$tcpdf->addPage();
@@ -23,11 +22,11 @@
 	{
 		$txt1 = ($conf['Conf']['label'])." :";
 		$txt2 = $conf['Conf']['start']."-".$conf['Conf']['end'];
-		//$tcpdf->write(100,utf8_encode($txt));
 		if($i==1)
 		{
-			$tcpdf->Cell(50,70,"", 0,1,'L'); 
+			$tcpdf->Cell(0,40,"", 0,1,'L'); 
 			$tcpdf->SetFont($textfont,'',28); 
+			$tcpdf->Cell(0,0," Mon Programme", 0,1,'L'); 
 			$tcpdf->Cell(0,0,"Conférences et présentations", 0,1,'L'); 
 			$tcpdf->Cell(50,10,"", 0,1,'L'); 
 
@@ -48,7 +47,6 @@
 		{
 			$tcpdf->SetFont($textfont,'',28); 
 			$tcpdf->Cell(50,20,"Activités", 0,1,'L'); 
-			$tcpdf->Cell(50,10,"", 0,1,'L'); 
 		}
 		$tcpdf->SetFont($textfont,'',14); 
 		$tcpdf->Cell(0,0, utf8_encode($txt1), 0,1,'L'); 
