@@ -181,7 +181,7 @@ Organisez votre planning et intégrez toutes les activités auxquelles vous souh
 				<?php if(AuthComponent::user('username')): ?>
 				<ul id="menuconnecte" style=" font-size:14px; list-style-type: none; margin:0 auto; display:inline-block; width:100%; text-align:center;  margin-top:20px;">
 					<li style="display:inline; margin-left:0;"><?php echo $this->Html->link("Village des entreprises",array('controller'=>'Company','action'=>'index'))?><span class="slash_menu" style="margin:0 13px 0 5px;"><img src="http://www.forum-alsacetech.org/images/cms/trait-bleu.png"/></span></li>
-					<li style="display:inline; margin-left:0;"><?php echo $this->Html->link("S'inscrire à une conférence",array('controller'=>'Conf','action'=>'index'))?><span class="slash_menu" style="margin:0 13px 0 5px;"><img src="http://www.forum-alsacetech.org/images/cms/trait-bleu.png"/></span></li>
+					<li style="display:inline; margin-left:0;"><?php echo $this->Html->link("Choisir ses conférence",array('controller'=>'Conf','action'=>'index'))?><span class="slash_menu" style="margin:0 13px 0 5px;"><img src="http://www.forum-alsacetech.org/images/cms/trait-bleu.png"/></span></li>
 					<li style="display:inline; margin-left:0;"><?php echo $this->Html->link("Activités",array('controller'=>'Activities','action'=>'inscription'))?><span class="slash_menu" style="margin:0 13px 0 5px;"><img src="http://www.forum-alsacetech.org/images/cms/trait-bleu.png"/></span></li>
 					<li style="display:inline; margin-left:0;"><?php echo $this->Html->link("Exporter en PDF",array('controller'=>'PDF','action'=>'download'))?><span class="slash_menu" style="margin:0 13px 0 5px;"><img src="http://www.forum-alsacetech.org/images/cms/trait-bleu.png"/></span></li>
 					</ul>
