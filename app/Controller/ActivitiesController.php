@@ -25,36 +25,16 @@ class ActivitiesController extends AppController
 
 		if ($this->request->is('post')) 
 		{
-			//Test both
-			$i=0;
-			foreach ($this->request->data as $row) 
-			{
-				foreach ($row['Activity'] as $id) 
-				{
-					$activity = $this->Activity->findById($id);
-					if($activity['Activity']['type'] == 'autre')
-					{
-						$i++;
-					}
-				}
-			}
-			if($i==2)
-			{
-				$this->Session->setFlash('Merci de ne selectionner qu\' une seule des deux dernières options');
-			}
-			else
-			{
-				$this->User->create();
-		    	$this->User->set('id',AuthComponent::user('id'));
-		    	if ($this->User->save($this->request->data)) 
-		    	{
-		       		$this->Session->setFlash(__('Données enregistrées'));
-		      	}
-		    	else 
-		    	{	
-		        	$this->Session->setFlash(__('Oups'));
-		        }
-			}
+			$this->User->create();
+	    	$this->User->set('id',AuthComponent::user('id'));
+	    	if ($this->User->save($this->request->data)) 
+	    	{
+	       		$this->Session->setFlash(__('Données enregistrées'));
+	      	}
+	    	else 
+	    	{	
+	        	$this->Session->setFlash(__('Oups'));
+	        }
 	    }
 
 		$this->User->save($this->data);

@@ -6,9 +6,7 @@
     <legend>Choisir</legend>
   <?php
 	echo $this->Form->input('User.Activity',array('label'=>false, 'multiple'=>'checkbox','selected'=>$selected));
-  ?>
-  <p><strong>Un choix possible entre les deux derniers</strong></p>
- 
+  ?> 
  <?php echo $this->Form->end(__('Sauvegarder')); ?>
   </fieldset>
 

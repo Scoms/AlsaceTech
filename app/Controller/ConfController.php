@@ -55,50 +55,46 @@ class ConfController extends AppController
 
 		$alreadyBooked = false;
 		$userId = AuthComponent::user('id');
-		
-		//If places remains
-		if(sizeof($list_book) < $max_book)
+	
+		//If not already booked
+		if(!$this->Booking->find('first',array("conditions" => array("conf_id" => $id,"user_id" => $userId))))
 		{
-			//If not already booked
-			if(!$this->Booking->find('first',array("conditions" => array("conf_id" => $id,"user_id" => $userId))))
+			//If the person is free 
+			$bookedConfs = $this->Booking->find('all',array(
+				"conditions" => array(
+					"user_id" => AuthComponent::user('id')
+					)));
+
+			$currentConf = $this->Conf->find('first',array("conditions"=>array("id"=>$id)));
+			$isFree = true;
+			foreach ($bookedConfs as $conf)
 			{
-				//If the person is free 
-				$bookedConfs = $this->Booking->find('all',array(
-					"conditions" => array(
-						"user_id" => AuthComponent::user('id')
-						)));
-
-				$currentConf = $this->Conf->find('first',array("conditions"=>array("id"=>$id)));
-				$isFree = true;
-				foreach ($bookedConfs as $conf)
+				if($conf['Conf']['start'] < $currentConf['Conf']['start'] && $currentConf['Conf']['start'] < $conf['Conf']['end'])
 				{
-					if($conf['Conf']['start'] < $currentConf['Conf']['start'] && $currentConf['Conf']['start'] < $conf['Conf']['end'])
-					{
-						$isFree = false;
-					}	
-					if($conf['Conf']['start'] < $currentConf['Conf']['end'] && $currentConf['Conf']['end'] < $conf['Conf']['end'])
-					{
-						$isFree = false;
-					}
-					if($currentConf['Conf']['start'] < $currentConf['Conf']['start'] && $conf['Conf']['end'] < $currentConf['Conf']['end'])
-					{
-						$isFree = false;
-					}	
-					
-					if(!$isFree)	
-					{
-						$this->Session->setFlash("Vous n'êtes pas disponible à ce moment.");
-					}
-				}
-
-				if($isFree)
+					$isFree = false;
+				}	
+				if($conf['Conf']['start'] < $currentConf['Conf']['end'] && $currentConf['Conf']['end'] < $conf['Conf']['end'])
 				{
-					$this->Booking->Create();
-					$this->Booking->set('conf_id',$id);
-					$this->Booking->set('user_id',$userId);
-					$this->Booking->save();
-					$this->Session->setFlash("Vous êtes bien inscrit à l'événement.");
+					$isFree = false;
 				}
+				if($currentConf['Conf']['start'] < $currentConf['Conf']['start'] && $conf['Conf']['end'] < $currentConf['Conf']['end'])
+				{
+					$isFree = false;
+				}	
+				
+				if(!$isFree)	
+				{
+					$this->Session->setFlash("Vous n'êtes pas disponible à ce moment.");
+				}
+			}
+
+			if($isFree)
+			{
+				$this->Booking->Create();
+				$this->Booking->set('conf_id',$id);
+				$this->Booking->set('user_id',$userId);
+				$this->Booking->save();
+				$this->Session->setFlash("Vous êtes bien inscrit à l'événement.");
 			}
 			else
 			{

@@ -7,7 +7,6 @@
 		<th style="width:50px; padding-right:20px;">Fin</th>
 		<th style="width:300px; padding-right:20px;">Nom</th>
 		<th style="width:100px; padding-right:20px; padding-left:20px;">Description</th>
-		<th>Places</th>
 		<th><th>
 	</tr>
 <?php foreach ($confs as $conf):?>
@@ -16,13 +15,6 @@
 		<td><?php echo substr($conf[0]['Conf']['end'], 0, -3) ?></td>
 		<td><?php echo utf8_encode($conf[0]['Conf']['label']) ?></td>
 		<td><?php if( $conf[0]['Conf']['description'] != "" ) { ?><acronym style=" margin-left:20px; border-bottom:1px dotted; padding-bottom:2px; cursor:pointer;" title="<?php echo utf8_encode($conf[0]['Conf']['description']) ?>">Plus d'info</acronym><?php } ?></td>
-		<td>
-			<?php 
-				echo $conf[1];
-				$places = $conf[0]['Conf']['type'] == "G" ? 100 : 45;
-				echo " /".$places;
-			?>
-		</td>
 		<td>
 			<?php 
 			if($conf[2])
