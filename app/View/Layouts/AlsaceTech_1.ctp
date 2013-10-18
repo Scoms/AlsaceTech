@@ -149,7 +149,7 @@
 	      <div id="main">
 	   
 	   <div class="breadcrumbs">
-	        <a href="/"><img src="http://www.forum-alsacetech.org/images/cms/home.png" style="border: none; vertical-align: middle;" /></a> : <a href="http://www.forum-alsacetech.org/FR/etudiants/presentation-3.html">Visiteurs</a> <span class="slash">/</span> <span class="lastitem">Plannifier sa journée</span>
+	        <a href="/"><img src="http://www.forum-alsacetech.org/images/cms/home.png" style="border: none; vertical-align: middle;" /></a> : <a href="http://www.forum-alsacetech.org/FR/etudiants/presentation-3.html">Visiteurs</a> <span class="slash">/</span> <span class="lastitem">Planifier sa journée</span>
 	<hr class="accessibility" />
 	   <hr class="accessibility" />
 	   </div>
@@ -165,8 +165,9 @@
 		<div class="navbar">
 				<?php if(!(AuthComponent::user('username'))): ?>
 				
-				<h1 class="bleufonce" style="margin:10px 0; margin-top:30px; color: #009790; text-align:center;">Plannifie ta journée pour être le plus efficace !</h1>
-				<p>Afin de préparer au mieux cette journée, Alsace Tech vous propose un portail vous permettant d'enregistrer votre journée. Choisissez les entreprises que vous souhaitez rencontrer, et réservez vos places pour les différentes conférences proposées !</p>
+				<h1 class="bleufonce" style="margin:10px 0; margin-top:30px; color: #009790; text-align:center;">Planifie ta journée pour ne rien rater !</h1>
+				<p>Afin de vous préparer au mieux cette journée, Alsace Tech vous propose de créer votre programme.<br/>
+Organisez votre planning et intégrez toutes les activités auxquelles vous souhaitez participer.</p>
 				<h2 style="color: #888; font-size:14px;">C'est la première fois que vous venez ici ? <?php echo $this->Html->link("Enregistrez vous",array('controller'=>'Users','action'=>'add')) ?><br/>
 				Vous avez déjà fait un compte ? <?php echo $this->Html->link('Connectez vous',array('controller'=>'Users','action'=>'login')) ?></h2>
 			<?php endif ?>
