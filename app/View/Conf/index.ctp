@@ -33,7 +33,7 @@
 	<?php } // end if is type G ?>
 <?php endforeach ?>
 </table>
-<p>Vous pouvez participer à des présentations métier <strong>sous réserve d'inscription préalable auprès de votre école.</strong></p>
+<p style="margin-top:15px;">Vous pouvez participer à des présentations métier <strong>sous réserve d'inscription préalable auprès de votre école.</strong></p>
 <table style="width:750px;">
 	<caption></caption>
 	<tr style="height:20px;">

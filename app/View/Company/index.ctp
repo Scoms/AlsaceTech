@@ -1,3 +1,4 @@
+<?php if(AuthComponent::user('username')): ?>
 <h2>Choissisez la catégorie qui vous intéresse</h2>
 
 <ul>
@@ -10,3 +11,4 @@
 	<li><?php echo $this->Html->link("Transport, Construction, Mécanique",array('controller'=>'Company','action'=>'category','TRANSPORT')); ?></li>
 	<li><?php echo $this->Html->link("Autre",array('controller'=>'Company','action'=>'category')); ?></li>
 </ul>
+<?php endif ?>
