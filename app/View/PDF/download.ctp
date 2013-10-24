@@ -6,7 +6,7 @@
 	$textfont = 'freesans'; // looks better, finer, and more condensed than 'dejavusans' 
 
 	$tcpdf->SetAuthor("Programme"); 
-	$tcpdf->SetAutoPageBreak(true,50); 
+	$tcpdf->SetAutoPageBreak(true,PDF_MARGIN_BOTTOM); 
 	$tcpdf->setHeaderFont(array($textfont,'',40)); 
 	$tcpdf->xheadercolor = array(255,255,255); 
 	$tcpdf->setPrintFooter(false);
@@ -19,10 +19,15 @@
 	//$tcpdf->Cell(0,14, "Hello World", 0,1,'L'); 
 	$i=1;
 	//$tcpdf->Cell(0,40,"", 0,1,'L'); 
-	$tcpdf->SetFont($textfont,'',50); 
-	$tcpdf->Write(0,"Forum Alsace Tech 2013",'',false,'L',true); 
+	$str = APP .'webroot/img/'.'AlsaceTechLogo.jpg';
+
+	$html = '<img src="'.$str.'" alt="test alt attribute" border="0" />';
+	$tcpdf->writeHTML($html, true, false, true, false, '');
+
+	//$tcpdf->SetFont($textfont,'',50); 
+	//$tcpdf->Write(0,"Forum Alsace Tech 2013",'',false,'L',true); 
 	$tcpdf->SetFont($textfont,'',28); 
-	$tcpdf->Write(20,"",'',false,'L',true); 
+	//$tcpdf->Write(20,"",'',false,'L',true); 
 	$tcpdf->Write(0,"Mon Programme",'',false,'L',true); 
 	$tcpdf->Write(5,"",'',false,'L',true); 
 
@@ -61,7 +66,6 @@
 	$tcpdf->Write(5,'','',false,'L',true); 
 
 	$i=1;
-	//$tcpdf->addPage();
 	foreach ($companies as $company) 
 	{		
 		if($i==1)
@@ -74,5 +78,6 @@
 		$tcpdf->Cell(0,0, utf8_encode($company['label']), 0,1,'L'); 
 		$i++;
 	}
+
 	echo $tcpdf->Output('planning.pdf', 'D'); 
 ?>
