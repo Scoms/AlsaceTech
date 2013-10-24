@@ -18,15 +18,16 @@
 	$tcpdf->addPage();
 	//$tcpdf->Cell(0,14, "Hello World", 0,1,'L'); 
 	$i=1;
+	$tcpdf->Cell(0,40,"", 0,1,'L'); 
+	$tcpdf->SetFont($textfont,'',28); 
+	$tcpdf->Cell(0,0," Mon Programme", 0,1,'L'); 
+	
 	foreach ($confs as $conf) 
 	{
 		$txt1 = ($conf['Conf']['label'])." :";
 		$txt2 = $conf['Conf']['start']."-".$conf['Conf']['end'];
 		if($i==1)
 		{
-			$tcpdf->Cell(0,40,"", 0,1,'L'); 
-			$tcpdf->SetFont($textfont,'',28); 
-			$tcpdf->Cell(0,0," Mon Programme", 0,1,'L'); 
 			$tcpdf->Cell(0,0,"Conférences et présentations", 0,1,'L'); 
 			$tcpdf->Cell(50,10,"", 0,1,'L'); 
 
@@ -35,8 +36,15 @@
 		$tcpdf->Cell(0,0, utf8_encode($txt1), 0,1,'L'); 
 		$tcpdf->Cell(0,0, utf8_encode($txt2), 0,1,'L'); 
 		$i++;
-	}
-
+	}/*
+	if($conf==null)
+	{
+		$tcpdf->Cell(0,40,"", 0,1,'L'); 
+			$tcpdf->SetFont($textfont,'',28); 
+			$tcpdf->Cell(0,0," Mon Programme", 0,1,'L'); 
+			$tcpdf->Cell(0,0,"Conférences et présentations", 0,1,'L'); 
+			$tcpdf->Cell(50,10,"", 0,1,'L'); 
+		}*/
 	$i=1;
 	foreach ($activities as $activity) 
 	{
@@ -68,7 +76,5 @@
 		$tcpdf->Cell(0,0, utf8_encode($company['label']), 0,1,'L'); 
 		$i++;
 	}
-	
-	//var_dump($txt);
 	echo $tcpdf->Output('planning.pdf', 'D'); 
 ?>
